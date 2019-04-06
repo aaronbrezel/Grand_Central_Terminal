@@ -21,4 +21,4 @@ The four days we selected and their relevant weather information are as follows:
 | August, 29th, 2018 | 92°/81°  |  0 in. |
 
 
-Credit: [Aaron Brezel](https://github.com/aaronbrezel), [Aditi Hudli](https://github.com/aditi-hudli), [Tristan Orlofski](https://github.com/torlofski) and Mythili Shankara
+Credit: [Aaron Brezel](https://github.com/aaronbrezel), [Aditi Hudli](https://github.com/aditi-hudli), [Tristan Orlofski](https://github.com/torlofski) and [Mythili Shankara](https://github.com/MythiliSankara)
