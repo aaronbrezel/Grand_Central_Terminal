@@ -38,7 +38,7 @@ function buildChart(smallData,chart) {
 
 	var svg = chart.append("svg")
  		.attr("width", "100%")
-		.attr("height", "100%")
+		.attr("height", "1600px")
 		.style("background-color", "lightgrey")
 	
 		
@@ -115,7 +115,14 @@ function buildChart(smallData,chart) {
 function handleStepEnter(response) {
 	console.log(response.index)
 	// response = { element, direction, index }
-	colorDots(circles)
+	if (response.index == 0 && response.direction == "down"){
+		colorDots(circles)
+	}
+	else if (response.index == 1 && response.direction == "down"){
+		boxDots(circles)
+	}
+
+
 
 
 	// add color to current step only

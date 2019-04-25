@@ -12,3 +12,66 @@ function colorDots (circles){
         }
       })
 }
+
+function boxDots(circles){
+    circles.transition()
+        .delay(function(d,i){return (10*i)})
+        .attr("cx", function (d,i){
+          if (Math.floor(i/100) == 0){ //"Citibikes"
+            var col = (i+1)%10;
+            if (col == 0){
+              col = 10
+            }  
+            if (col == 1){
+              var cx = col*3+2; 
+            }
+            else {
+              var cx = col*8 -3
+            }
+            return cx
+          }
+          else if (Math.floor(i/100) == 1 || Math.floor(i/100) == 2) { //"Subway"
+            var col = (i+1)%10;
+            if (col == 0){
+              col = 10
+            }  
+            if (col == 1){
+              var cx = col*3+2; 
+            }
+            else {
+              var cx = col*8 -3
+            }
+            return cx + 300
+          }
+          else { //"Taxis"
+            var col = (i+1)%10;
+            if (col == 0){
+              col = 10
+            }  
+            if (col == 1){
+              var cx = col*3+2; 
+            }
+            else {
+              var cx = col*8 -3
+            }
+            return cx + 600
+          }
+      })
+      .attr("cy", function (d,i){ 
+        if (Math.floor(i/100) == 0){ //"Citibikes"
+            var row = Math.ceil((i+1)/10)
+            var cy = (row * 10) + 200 
+            return cy
+          }
+        else if (Math.floor(i/100) == 1 || Math.floor(i/100) == 2) { //"Subway"
+          var row = Math.ceil((i-100+1)/10)
+          var cy = (row * 10) + 200 
+          return cy
+        }
+        else { //"Taxis"
+          var row = Math.ceil((i-300+1)/10)
+            var cy = (row * 10) + 200 
+            return cy
+        }
+      })
+}
