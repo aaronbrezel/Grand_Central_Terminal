@@ -18,47 +18,52 @@
 
     <!--D3 js-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
 
     <!--Our js-->
     <script src="js/animations.js"></script>
+    <script src="js/scrollama.js"></script>
 
     <!--Our CSS-->
     <link type="text/css" rel="stylesheet" href="css/GCT.css"/>
+
+    <!--Test data json load-->
+    <script type="text/javascript" src="./data/brooklyn_bridge_pedestrians_json.json"></script>
+
 </head>
 <body id="body">
-    <section id = "into">
-        <h1>Grand Central Terminal project (working title)</h1>
-        <h3>Aaron Brezel, Aditi Hudli, Tristan Orlofski and Mythili Shankara</h3>
-    </section>
-    <section id='scroll'>
+    <main>
+		<section id='intro'>
+			<h1>How the city moves</h1>
+		</section>
 
-        <div class='scroll__graphic'>
-            <!--   actual graphic/chart   -->
-            <div class='chart'>
-                <p>0</p>
-            </div>
-        </div>
+		<section id='scrolly'>
 
-        <!--  step/text container  -->
-        <div class='scroll__text'>
-		    <div class='step' data-step='1'>
-			    <p>STEP 1</p>
-		    </div>
-		    <div class='step' data-step='2'>
-			    <p>STEP 2</p>
-		    </div>
-		    <div class='step' data-step='3'>
-			    <p>STEP 3</p>
-		    </div>
-		    <div class='step' data-step='4'>
-			    <p>STEP 4</p>
-		    </div>
-	    </div>
+			<figure>
+				<p>0</p>
+			</figure>
 
+			<article>
+				<div class='step' data-step='1'>
+					<p>STEP 1</p>
+				</div>
+				<div class='step' data-step='2'>
+					<p>STEP 2</p>
+				</div>
+				<div class='step' data-step='3'>
+					<p>STEP 3</p>
+				</div>
+				<div class='step' data-step='4'>
+					<p>STEP 4</p>
+				</div>
+			</article>
 
-    </section>
+			
+		</section>
 
-
+		<section id='outro'>Thanks for reading!</section>
+	</main>
 
 </body>
 </html>
