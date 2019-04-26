@@ -8,6 +8,16 @@ var testData
 
 var circles //circles
 
+
+// d3.csv("./data/march_yellowcab_and_weather.csv",function(error,json){
+// 	if (error) return console.log(error)
+// }).then(function(data){
+// 	console.log(data)
+// })
+
+
+
+
 d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
@@ -15,6 +25,10 @@ d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
 	testData = data
 	startup()
 })
+
+
+
+
 
 function startup(){
 	$(document).ready(function () {
@@ -36,23 +50,7 @@ function startup(){
 
 }
 
-// start it up
-// $(document).ready(function () {
 
-// 	main = d3.select('main')
-// 	scrolly = main.select('#scrolly');
-// 	figure = scrolly.select('figure');
-// 	article = scrolly.select('article');
-// 	step = article.selectAll('.step');
-
-// 	scroller = scrollama();
-// 	init();
-	
-// 	smallData = testData.splice(1,400)
-
-// 	buildChart(smallData,figure)
-// 	//$chart.append(buildChart(testData,$chart))
-// })
 
 function buildChart(smallData,chart) {
 	
