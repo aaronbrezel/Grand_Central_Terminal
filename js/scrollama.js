@@ -8,30 +8,51 @@ var testData
 
 var circles //circles
 
-d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
+d3.json("https://raw.githubusercontent.com/aaronbrezel/Grand_Central_Terminal/master/data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
 	testData = data
+	startup()
 })
+
+function startup(){
+	$(document).ready(function () {
+
+		main = d3.select('main')
+		scrolly = main.select('#scrolly');
+		figure = scrolly.select('figure');
+		article = scrolly.select('article');
+		step = article.selectAll('.step');
+	
+		scroller = scrollama();
+		init();
+		
+		smallData = testData.splice(1,400)
+	
+		buildChart(smallData,figure)
+		//$chart.append(buildChart(testData,$chart))
+	})
+
+}
 
 // start it up
-$(document).ready(function () {
+// $(document).ready(function () {
 
-	main = d3.select('main')
-	scrolly = main.select('#scrolly');
-	figure = scrolly.select('figure');
-	article = scrolly.select('article');
-	step = article.selectAll('.step');
+// 	main = d3.select('main')
+// 	scrolly = main.select('#scrolly');
+// 	figure = scrolly.select('figure');
+// 	article = scrolly.select('article');
+// 	step = article.selectAll('.step');
 
-	scroller = scrollama();
-	init();
+// 	scroller = scrollama();
+// 	init();
 	
-	smallData = testData.splice(1,400)
+// 	smallData = testData.splice(1,400)
 
-	buildChart(smallData,figure)
-	//$chart.append(buildChart(testData,$chart))
-})
+// 	buildChart(smallData,figure)
+// 	//$chart.append(buildChart(testData,$chart))
+// })
 
 function buildChart(smallData,chart) {
 	
