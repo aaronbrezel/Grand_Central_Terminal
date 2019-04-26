@@ -8,7 +8,7 @@ var testData
 
 var circles //circles
 
-d3.json("https://raw.githubusercontent.com/aaronbrezel/Grand_Central_Terminal/master/data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
+d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
