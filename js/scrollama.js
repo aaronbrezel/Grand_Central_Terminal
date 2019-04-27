@@ -9,22 +9,24 @@ var testData
 var circles //circles
 
 
-// d3.csv("./data/march_yellowcab_and_weather.csv",function(error,json){
-// 	if (error) return console.log(error)
-// }).then(function(data){
-// 	console.log(data)
-// })
-
-
-
-
-d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
-	if (error) return console.log("Error loading data")
-	//console.log(json)
+d3.csv("./data/bikes_counts_by_day.csv",function(error,json){
+	if (error) return console.log(error)
 }).then(function(data){
-	testData = data
-	startup()
+	console.log(data)
 })
+
+
+
+
+
+
+// d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
+// 	if (error) return console.log("Error loading data")
+// 	//console.log(json)
+// }).then(function(data){
+// 	testData = data
+// 	startup()
+// })
 
 
 
@@ -66,14 +68,20 @@ function buildChart(smallData,chart) {
 	circleHomes.attr("transform", `translate(100,40)`)
 		
 	
+	
+	
+	for(i = 0; i < 400; i++){
+		circleHomes.append("circle").attr("cx",-10).attr("cy",-10).attr("r",0).style("fill","red")
+	}
+	
 	circles = circleHomes.selectAll("circle")
-                  .data(smallData)
-                  .enter()
-                  .append("circle")
-                  .attr("cx", -10)
-                  .attr("cy", -10)
-                  .attr("r", 0)
-                  .style("fill", "red")
+									// .data(smallData)
+                  // .enter()
+                  // .append("circle")
+                  // .attr("cx", -10)
+                  // .attr("cy", -10)
+                  // .attr("r", 0)
+                  // .style("fill", "red")
 		 
 	circles.transition()
                   .delay(function(d,i){  
