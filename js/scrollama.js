@@ -4,29 +4,21 @@ var main, scrolly, figure, article, step;
 // initialize the scrollama
 var scroller
 
-var testData
+var dayCounts
+
+var monthTotal = 1920889 //total number of citibikes, yellowcabs and rideshares taken in the immediate vicinity of GCT or TSQ in March, 2018 
+var monthlyDivisor = 474 //will make each dot represent 4052.50843882 New yorkers 
 
 var circles //circles
 
 
-d3.csv("./data/bikes_counts_by_day.csv",function(error,json){
-	if (error) return console.log(error)
+d3.json("./data/day_counts_march_json.json", function(error,json) {
+	if (error) return console.log("Error loading data")
+	//console.log(json)
 }).then(function(data){
-	console.log(data)
+	dayCounts = data
+	startup()
 })
-
-
-
-
-
-
-// d3.json("./data/brooklyn_bridge_pedestrians_json.json", function(error,json) {
-// 	if (error) return console.log("Error loading data")
-// 	//console.log(json)
-// }).then(function(data){
-// 	testData = data
-// 	startup()
-// })
 
 
 
@@ -44,10 +36,10 @@ function startup(){
 		scroller = scrollama();
 		init();
 		
-		smallData = testData.splice(1,400)
 	
-		buildChart(smallData,figure)
-		//$chart.append(buildChart(testData,$chart))
+	
+		buildChart(dayCounts,figure)
+	
 	})
 
 }
@@ -68,10 +60,15 @@ function buildChart(smallData,chart) {
 	circleHomes.attr("transform", `translate(100,40)`)
 		
 	
+	console.log(79%79)
 	
-	
-	for(i = 0; i < 400; i++){
-		circleHomes.append("circle").attr("cx",-10).attr("cy",-10).attr("r",0).style("fill","red")
+
+
+	for(i = 1; i <= 474; i++){
+		//whenever i%79 = 0, switch sides and 
+
+		var row = Math.floor(i/79)
+		circleHomes.append("circle").attr("cx", i).attr("cy", 4).attr("r",3).style("fill","red")
 	}
 	
 	circles = circleHomes.selectAll("circle")
@@ -83,35 +80,35 @@ function buildChart(smallData,chart) {
                   // .attr("r", 0)
                   // .style("fill", "red")
 		 
-	circles.transition()
-                  .delay(function(d,i){  
-                    return 10*i})
-                  .ease(d3.easeExpOut)
-                  .attr("r", 3)
-                  .attr("cy", function (d, i) { 
-                    var row = Math.ceil((i+1)/100)
-                    var cy = row * 10 
-                    return cy })
-                  .attr("cx", function (d, i) {    
-                    var col = (i+1)%100
-                    if (col == 0){
-                    col = 100
-                    } //provides a number between 1 and 100       
-                    if (col == 1){
-                      var cx = col*3+2; 
-                    }
-                    else {
-                    var cx = col*8 -3
-                    }
-                    return cx })
-                  .on("end", function(d,i) {
+	// circles.transition()
+  //                 .delay(function(d,i){  
+  //                   return 10*i})
+  //                 .ease(d3.easeExpOut)
+  //                 .attr("r", 3)
+  //                 .attr("cy", function (d, i) { 
+  //                   var row = Math.ceil((i+1)/100)
+  //                   var cy = row * 10 
+  //                   return cy })
+  //                 .attr("cx", function (d, i) {    
+  //                   var col = (i+1)%100
+  //                   if (col == 0){
+  //                   col = 100
+  //                   } //provides a number between 1 and 100       
+  //                   if (col == 1){
+  //                     var cx = col*3+2; 
+  //                   }
+  //                   else {
+  //                   var cx = col*8 -3
+  //                   }
+  //                   return cx })
+  //                 .on("end", function(d,i) {
 											
-											if (i+1 == smallData.length){
-                        console.log("END TRANSITION")
-											}
+	// 										if (i+1 == 474){
+  //                       console.log("END TRANSITION")
+	// 										}
 											
                         
-                   })
+  //                  })
 	
 
 	return svg.node()
@@ -143,10 +140,10 @@ function handleStepEnter(response) {
 	console.log(response.index)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
-		colorDots(circles)
+		//colorDots(circles)
 	}
 	else if (response.index == 1 && response.direction == "down"){
-		boxDots(circles)
+		//boxDots(circles)
 	}
 
 
