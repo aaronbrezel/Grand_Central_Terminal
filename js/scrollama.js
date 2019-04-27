@@ -7,7 +7,7 @@ var scroller
 var dayCounts
 
 var monthTotal = 1920889 //total number of citibikes, yellowcabs and rideshares taken in the immediate vicinity of GCT or TSQ in March, 2018 
-var monthlyDivisor = 474 //will make each dot represent 4052.50843882 New yorkers 
+var monthlyDivisor = 1000 //will make each dot represent 1920.889 New yorkers 
 
 var circles //circles
 
@@ -62,13 +62,18 @@ function buildChart(smallData,chart) {
 	
 	console.log(79%79)
 	
-
-
-	for(i = 1; i <= 474; i++){
-		//whenever i%79 = 0, switch sides and 
-
-		var row = Math.floor(i/79)
-		circleHomes.append("circle").attr("cx", i).attr("cy", 4).attr("r",3).style("fill","red")
+	var cx = 0
+	var cy = 0
+	for(i = 1; i <= 1000; i++){
+		//whenever i%79 = 0, it signals a new row 
+		circleHomes.append("circle").attr("cx", cx).attr("cy", cy).attr("r",3).style("fill","red")
+		
+		cx = cx + 7
+		if (i%100 == 0){
+			cx = 0;
+			cy = cy + 6;
+		}		
+		
 	}
 	
 	circles = circleHomes.selectAll("circle")
