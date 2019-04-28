@@ -4,7 +4,8 @@ var main, scrolly, figure, article, step;
 // initialize the scrollama
 var scroller
 
-var dayCounts
+var dayCounts //variable for Json with the individual counts of each transportation method by day
+var criticalTotals//Json with total counts. Total citibikes, total FHV(and Uber, etc.), total yellowcabs and total of everything
 
 var monthTotal = 1920889 //total number of citibikes, yellowcabs and rideshares taken in the immediate vicinity of GCT or TSQ in March, 2018 
 var monthlyDivisor = 1000 //will make each dot represent 1920.889 New yorkers 
@@ -12,11 +13,11 @@ var monthlyDivisor = 1000 //will make each dot represent 1920.889 New yorkers
 var circles //circles
 
 
-d3.json("./data/day_counts_march_json.json", function(error,json) {
+d3.json("./data/critical_totals_march_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
-	dayCounts = data
+	criticalTotals = data
 	startup()
 })
 
@@ -38,7 +39,7 @@ function startup(){
 		
 	
 	
-		buildChart(dayCounts,figure)
+		buildChart(criticalTotals,figure)
 	
 	})
 
@@ -46,10 +47,10 @@ function startup(){
 
 
 
-function buildChart(smallData,chart) {
+function buildChart(smallData,figure) {
 	
 
-	var svg = chart.append("svg")
+	var svg = figure.append("svg")
  		.attr("width", "100%")
 		.attr("height", "1600px")
 		.style("background-color", "lightgrey")
@@ -57,22 +58,20 @@ function buildChart(smallData,chart) {
 		
 	var circleHomes = svg.append("g").attr("id","circleGroup")
 	
-	circleHomes.attr("transform", `translate(100,40)`)
+	circleHomes.attr("transform", `translate(50,40)`)
 		
-	
-	console.log(79%79)
 	
 	var cx = 0
 	var cy = 0
-	for(i = 1; i <= 1000; i++){
+	for(i = 1; i <= 400; i++){
 		//whenever i%79 = 0, it signals a new row 
-		circleHomes.append("circle").attr("cx", cx).attr("cy", cy).attr("r",3).style("fill","red")
+		circleHomes.append("circle").attr("cx", -10).attr("cy", -10).attr("r",0).style("fill","red")
 		
-		cx = cx + 7
-		if (i%100 == 0){
-			cx = 0;
-			cy = cy + 6;
-		}		
+		// cx = cx + 7
+		// if (i%100 == 0){
+		// 	cx = 0;
+		// 	cy = cy + 6;
+		// }		
 		
 	}
 	
@@ -85,35 +84,35 @@ function buildChart(smallData,chart) {
                   // .attr("r", 0)
                   // .style("fill", "red")
 		 
-	// circles.transition()
-  //                 .delay(function(d,i){  
-  //                   return 10*i})
-  //                 .ease(d3.easeExpOut)
-  //                 .attr("r", 3)
-  //                 .attr("cy", function (d, i) { 
-  //                   var row = Math.ceil((i+1)/100)
-  //                   var cy = row * 10 
-  //                   return cy })
-  //                 .attr("cx", function (d, i) {    
-  //                   var col = (i+1)%100
-  //                   if (col == 0){
-  //                   col = 100
-  //                   } //provides a number between 1 and 100       
-  //                   if (col == 1){
-  //                     var cx = col*3+2; 
-  //                   }
-  //                   else {
-  //                   var cx = col*8 -3
-  //                   }
-  //                   return cx })
-  //                 .on("end", function(d,i) {
+	circles.transition()
+                  .delay(function(d,i){  
+                    return 10*i})
+                  .ease(d3.easeExpOut)
+                  .attr("r", 3)
+                  .attr("cy", function (d,i) { 
+                    var row = Math.ceil((i+1)/100)
+                    var cy = row * 10 
+                    return cy })
+                  .attr("cx", function (d, i) {    
+                    var col = (i+1)%100
+                    if (col == 0){
+                    col = 100
+                    } //provides a number between 1 and 100       
+                    if (col == 1){
+                      var cx = col*3+2; 
+                    }
+                    else {
+                    var cx = col*8 -3
+                    }
+                    return cx })
+                  .on("end", function(d,i) {
 											
-	// 										if (i+1 == 474){
-  //                       console.log("END TRANSITION")
-	// 										}
+											if (i+1 == 474){
+                        console.log("END TRANSITION")
+											}
 											
                         
-  //                  })
+                   })
 	
 
 	return svg.node()
@@ -145,10 +144,10 @@ function handleStepEnter(response) {
 	console.log(response.index)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
-		//colorDots(circles)
+		colorDots(circles)
 	}
 	else if (response.index == 1 && response.direction == "down"){
-		//boxDots(circles)
+		boxDots(circles)
 	}
 
 

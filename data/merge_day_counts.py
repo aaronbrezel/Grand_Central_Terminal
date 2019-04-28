@@ -1,5 +1,6 @@
 import csv
 import json
+import math
 
 day_counts = {}
 
@@ -74,3 +75,57 @@ critical_totals_json = json.dumps(critical_totals)
 with open("critical_totals_march_json.json", "w") as write_file:
     write_file.write(critical_totals_json)
 
+
+proportion_table = {}
+proportion_by_day = {}
+
+
+#########################################################################
+# Create table 984 rows proportional by day
+########################################################################
+for key in day_counts:
+    proportion_by_day[key] = math.floor((day_counts[key]["total"] / month_total)*2000)
+
+count = 1
+
+for key in proportion_by_day:
+    for i in range(1,proportion_by_day[key]+1):
+        proportion_table[str(count)] = [key]
+        count = count+1
+
+
+########################################################################
+# Assign bikes FHV and yellowcab by day
+#########################################################################
+proportion_of_transportation_by_day = {}
+
+for key in day_counts:
+    
+    for category in ["bikes", "yellowcabs", "Ubers", "Lyfts", "Vias"]:        
+        if key in proportion_of_transportation_by_day:
+            if category == "Ubers":
+                proportion_of_transportation_by_day[key].update({category: (int(day_counts[key]["FHV"]["Uber"])/day_counts[key]["total"])*proportion_by_day[key]})
+            elif category == "Lyfts":
+                proportion_of_transportation_by_day[key].update({category:(int(day_counts[key]["FHV"]["Lyft"])/day_counts[key]["total"])*proportion_by_day[key]})
+            elif category == "Vias":
+                proportion_of_transportation_by_day[key].update({category:(int(day_counts[key]["FHV"]["Via"])/day_counts[key]["total"])*proportion_by_day[key]})
+            else:
+                proportion_of_transportation_by_day[key].update({category:(int(day_counts[key][category])/day_counts[key]["total"])*proportion_by_day[key]})
+        else:
+            if category == "Ubers":
+                proportion_of_transportation_by_day[key] = {category:(int(day_counts[key]["FHV"]["Uber"])/day_counts[key]["total"])*proportion_by_day[key]}
+            elif category == "Lyfts":
+                proportion_of_transportation_by_day[key] = {category:(int(day_counts[key]["FHV"]["Lyft"])/day_counts[key]["total"])*proportion_by_day[key]}
+            elif category == "Vias":
+                proportion_of_transportation_by_day[key] = {category:(int(day_counts[key]["FHV"]["Via"])/day_counts[key]["total"])*proportion_by_day[key]}
+            else:
+                proportion_of_transportation_by_day[key] = {category:(int(day_counts[key][category])/day_counts[key]["total"])*proportion_by_day[key]}
+
+
+print(proportion_of_transportation_by_day)
+
+
+
+# for key in proportion_table:
+#     proportion_table[key].append("citiBike")
+#     print(proportion_table[key])
