@@ -103,7 +103,7 @@ function handleStepEnter(response) {
 		//boxDots(circles)
 	}
 	else if (response.index == 2 && response.direction == "down"){
-		graphDots(circles)
+		graphDots(circles,citiBikesByDay)
 	}
 
 

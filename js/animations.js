@@ -76,7 +76,7 @@ function boxDots(circles){
       })
 }
 
-function graphDots(circles){
+function graphDots(circles,citiBikesByDay){
   circles.transition()
   .delay(function(d,i){return (3*i)})
   .attr("cx", function(d,i){
@@ -86,8 +86,14 @@ function graphDots(circles){
     return cx
   })
   .attr("cy",function(d,i){
-    var cy = y(10)
+    var cy = y(0)
 
     return cy
+  })
+  .attr("r", function(d,i){
+    r = y(4)
+    
+    r = 3
+    return r
   })
 }
