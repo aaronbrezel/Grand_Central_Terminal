@@ -94,13 +94,16 @@ function startup(){
 
 // scrollama event handlers
 function handleStepEnter(response) {
-	console.log(response.index)
+	//console.log(response.index)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
 		//colorDots(circles)
 	}
 	else if (response.index == 1 && response.direction == "down"){
 		//boxDots(circles)
+	}
+	else if (response.index == 2 && response.direction == "down"){
+		graphDots(circles)
 	}
 
 

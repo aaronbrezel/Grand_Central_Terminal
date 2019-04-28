@@ -75,3 +75,19 @@ function boxDots(circles){
         }
       })
 }
+
+function graphDots(circles){
+  circles.transition()
+  .delay(function(d,i){return (3*i)})
+  .attr("cx", function(d,i){
+    var cx = x(date(d.day)) + 10
+    
+
+    return cx
+  })
+  .attr("cy",function(d,i){
+    var cy = y(10)
+
+    return cy
+  })
+}

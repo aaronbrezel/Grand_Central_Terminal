@@ -21,6 +21,7 @@ function buildCircles(circleArray, circleHomes){
 // }
 date = d3.timeParse("%Y-%m-%d")
 
+
 function buildChart(circleArray,figure){
 
     ////////////////////////////////////////////////////////////////
@@ -57,6 +58,9 @@ function buildChart(circleArray,figure){
     /////////////////////////////////////////////////////////////////////
     circles = buildCircles(circleArray,circleHomes)
     
+    //////////////////////////////////////////////////////////////////////
+    // Set dimension variables
+    //////////////////////////////////////////////////////////////////////
     var width = 1000 - circlesMargin.left - circlesMargin.right
     var circlesGroupHeight = 1600 - circlesMargin.top - circlesMargin.bottom
     var graphHeight = 1600 - graphMargin.top - graphMargin.bottom 
@@ -67,20 +71,21 @@ function buildChart(circleArray,figure){
     //create the x axis using x
     xAxis = d3.axisBottom(x)
 
-    y = d3.scaleLinear().range([height, 0]).domain([0, d3.max(time_parse_data.map(d => d.Pedestrians))])
-    //.domain(d3.extent(circleArray.map(d => buildDate(d.day))))
-    
-    console.log(date(circleArray[1].day))
-    
 
-
+    y = d3.scaleLinear().range([graphHeight, 0]).domain([0,1050]) //1015 is the greatest number of bikes taken in a day. This happens to be March 1st. This was calculated by looking at bike_counts_by_day_march.json
+    yAxis = d3.axisLeft(y)
+    
     svg.append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
+    .attr("transform", `translate(${graphMargin.left+10},${graphMargin.top+graphHeight})`)
     .call(xAxis);
-    
-    
-    console.log(x)
+
+    svg.append("g")
+    .attr("class", "axis axis--y")
+    .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
+    .call(yAxis)
+
+  
              
         // circles.transition()
       //                 .delay(function(d,i){  
