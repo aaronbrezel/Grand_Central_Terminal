@@ -13,14 +13,43 @@ var monthlyDivisor = 1000 //will make each dot represent 1920.889 New yorkers
 var circles //circles
 
 
-d3.json("./data/critical_totals_march_json.json", function(error,json) {
+var citiBikesByDay
+var citiBikesByDayTotal
+var circleArray
+
+// d3.json("./data/critical_totals_march_json.json", function(error,json) {
+// 	if (error) return console.log("Error loading data")
+// 	//console.log(json)
+// }).then(function(data){
+// 	criticalTotals = data
+// 	startup()
+// })
+
+d3.json("./data/bike_counts_by_day_march.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
-	criticalTotals = data
+	citiBikesByDay = data
+	citiBikesByDayTotal = citiBikesByDay["March"]
+	circleArray = createCircleArray(citiBikesByDay)
 	startup()
 })
 
+
+function createCircleArray(citiBikes){
+	var ArrayInProgress = []
+	total = 0
+	for (var key in citiBikes) {
+		if (key == "March"){
+			break
+		}
+		for(i=0; i < Math.round(citiBikes[key]/4); i++){
+			ArrayInProgress.push({"day" : key})
+			
+		}
+	}
+	return ArrayInProgress.slice(0,4307)
+}
 
 
 
@@ -38,87 +67,11 @@ function startup(){
 		init();
 		
 	
-	
-		buildChart(criticalTotals,figure)
+		circles =	buildChart(circleArray,figure)
 	
 	})
 
 }
-
-
-
-function buildChart(smallData,figure) {
-	
-
-	var svg = figure.append("svg")
- 		.attr("width", "100%")
-		.attr("height", "1600px")
-		.style("background-color", "lightgrey")
-	
-		
-	var circleHomes = svg.append("g").attr("id","circleGroup")
-	
-	circleHomes.attr("transform", `translate(50,40)`)
-		
-	
-	var cx = 0
-	var cy = 0
-	for(i = 1; i <= 400; i++){
-		//whenever i%79 = 0, it signals a new row 
-		circleHomes.append("circle").attr("cx", -10).attr("cy", -10).attr("r",0).style("fill","red")
-		
-		// cx = cx + 7
-		// if (i%100 == 0){
-		// 	cx = 0;
-		// 	cy = cy + 6;
-		// }		
-		
-	}
-	
-	circles = circleHomes.selectAll("circle")
-									// .data(smallData)
-                  // .enter()
-                  // .append("circle")
-                  // .attr("cx", -10)
-                  // .attr("cy", -10)
-                  // .attr("r", 0)
-                  // .style("fill", "red")
-		 
-	circles.transition()
-                  .delay(function(d,i){  
-                    return 10*i})
-                  .ease(d3.easeExpOut)
-                  .attr("r", 3)
-                  .attr("cy", function (d,i) { 
-                    var row = Math.ceil((i+1)/100)
-                    var cy = row * 10 
-                    return cy })
-                  .attr("cx", function (d, i) {    
-                    var col = (i+1)%100
-                    if (col == 0){
-                    col = 100
-                    } //provides a number between 1 and 100       
-                    if (col == 1){
-                      var cx = col*3+2; 
-                    }
-                    else {
-                    var cx = col*8 -3
-                    }
-                    return cx })
-                  .on("end", function(d,i) {
-											
-											if (i+1 == 474){
-                        console.log("END TRANSITION")
-											}
-											
-                        
-                   })
-	
-
-	return svg.node()
-}
-
-
 
 
 	// generic window resize listener event
@@ -144,10 +97,10 @@ function handleStepEnter(response) {
 	console.log(response.index)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
-		colorDots(circles)
+		//colorDots(circles)
 	}
 	else if (response.index == 1 && response.direction == "down"){
-		boxDots(circles)
+		//boxDots(circles)
 	}
 
 

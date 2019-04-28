@@ -76,15 +76,17 @@ with open("critical_totals_march_json.json", "w") as write_file:
     write_file.write(critical_totals_json)
 
 
-proportion_table = {}
-proportion_by_day = {}
-
 
 #########################################################################
 # Create table 984 rows proportional by day
 ########################################################################
+
+proportion_table = {}
+proportion_by_day = {}
+
+
 for key in day_counts:
-    proportion_by_day[key] = math.floor((day_counts[key]["total"] / month_total)*2000)
+    proportion_by_day[key] = math.floor((day_counts[key]["total"] / month_total)*4000)
 
 count = 1
 
