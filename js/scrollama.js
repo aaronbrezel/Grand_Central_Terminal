@@ -25,7 +25,7 @@ var circleArray
 // 	startup()
 // })
 
-d3.json("../data/bike_counts_by_day_march.json", function(error,json) {
+d3.json("./data/bike_counts_by_day_march.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
