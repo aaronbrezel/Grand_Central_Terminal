@@ -11,7 +11,7 @@ function buildCircles(circleArray, circleHomes){
 			            return cy
 		            })
                     .attr("r", 3)
-                    .style("fill", "red")
+                    .style("fill", "blue")
     return circles
 }
 
@@ -43,11 +43,11 @@ function buildChart(circleArray,figure){
     ////////////////////////////////////////////////////////////////////
     // establishes margin of each group on the SVG and places them within the svg
     //////////////////////////////////////////////////////////////////
-    var circlesMargin = {top: 50, right: 50, bottom: 50, left: 50} //There are likely errors with top and bottom margins. Will fix later
-    var graphMargin = {top: 950, right: 50, bottom: 50, left: 50}
+    var circlesMargin = {top: 50, right: 50, bottom: 1200, left: 50} //There are likely errors with top and bottom margins. Will fix later
+    var graphMargin = {top: 500, right: 50, bottom: 500, left: 50}
     
     circleHomes.attr("transform", `translate(${circlesMargin.left},${circlesMargin.top})`)
-    graphHomes.attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)        
+    graphHomes.attr("transform", `translate(${graphMargin.left+10},${graphMargin.top})`)        
 
 
 
@@ -65,7 +65,7 @@ function buildChart(circleArray,figure){
     var circlesGroupHeight = 1600 - circlesMargin.top - circlesMargin.bottom
     var graphHeight = 1600 - graphMargin.top - graphMargin.bottom 
 
-    circleHomes.attr("height", circlesGroupHeight)
+    //circleHomes.attr("height", circlesGroupHeight)
 
     //creates the scale for the x axis
     x = d3.scaleTime().range([0,width])
@@ -87,7 +87,7 @@ function buildChart(circleArray,figure){
     .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
     .call(yAxis)
 
-  
+    
              
         // circles.transition()
       //                 .delay(function(d,i){  

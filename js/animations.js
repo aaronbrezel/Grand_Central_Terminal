@@ -77,23 +77,29 @@ function boxDots(circles){
 }
 
 function graphDots(circles,citiBikesByDay){
+
+  var currDate = "2018-03-01"
+  var index = 0
   circles.transition()
-  .delay(function(d,i){return (3*i)})
+  .delay(function(d,i){return (10*i)})
   .attr("cx", function(d,i){
     var cx = x(date(d.day)) + 10
-    
-
     return cx
   })
   .attr("cy",function(d,i){
-    var cy = y(0)
-
+    if (d.day != currDate){
+      currDate = d.day
+      index = 0
+    }
+   
+    var cy = 450 + y(2+(index*4)) //450 represents the top margin of where the graph starts this is technically declared in graphis.js but I didn't want to deal with 
+    index++
     return cy
   })
   .attr("r", function(d,i){
     r = y(4)
     
-    r = 3
+    r = 2
     return r
   })
 }

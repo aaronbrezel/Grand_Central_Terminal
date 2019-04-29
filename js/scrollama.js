@@ -101,9 +101,17 @@ function handleStepEnter(response) {
 	}
 	else if (response.index == 1 && response.direction == "down"){
 		//boxDots(circles)
+		// var graphHomes = d3.select("#graphGroup")
+		// var removed = circles.remove();
+		// graphHomes.append(function(){
+		// 	return removed.node();
+		// })
+		graphDots(circles,citiBikesByDay)
+
 	}
 	else if (response.index == 2 && response.direction == "down"){
-		graphDots(circles,citiBikesByDay)
+		
+		
 	}
 
 
