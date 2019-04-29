@@ -17,7 +17,7 @@ var citiBikesByDay
 var citiBikesByDayTotal
 var circleArray
 
-// d3.json("./data/critical_totals_march_json.json", function(error,json) {
+// d3.json("../data/critical_totals_march_json.json", function(error,json) {
 // 	if (error) return console.log("Error loading data")
 // 	//console.log(json)
 // }).then(function(data){
@@ -25,7 +25,7 @@ var circleArray
 // 	startup()
 // })
 
-d3.json("./data/bike_counts_by_day_march.json", function(error,json) {
+d3.json("../data/bike_counts_by_day_march.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
