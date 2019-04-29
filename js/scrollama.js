@@ -41,7 +41,7 @@ function createCircleArray(citiBikes){
 	total = 0
 	for (var key in citiBikes) {
 		if (key == "March"){
-			break
+			break 
 		}
 		for(i=0; i < Math.round(citiBikes[key]/4); i++){
 			ArrayInProgress.push({"day" : key})
@@ -94,10 +94,14 @@ function startup(){
 
 // scrollama event handlers
 function handleStepEnter(response) {
-	//console.log(response.index)
+	console.log(response.index)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
 		//colorDots(circles)
+	}
+	else if (response.index == 0 && response.direction == "up"){
+		circles.transition();//this ends the previous transition
+		returnBlob(circles)
 	}
 	else if (response.index == 1 && response.direction == "down"){
 		//boxDots(circles)
@@ -106,6 +110,7 @@ function handleStepEnter(response) {
 		// graphHomes.append(function(){
 		// 	return removed.node();
 		// })
+		circles.transition();
 		graphDots(circles,citiBikesByDay)
 
 	}

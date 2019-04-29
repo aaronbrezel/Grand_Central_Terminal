@@ -68,7 +68,7 @@ function buildChart(circleArray,figure){
     //circleHomes.attr("height", circlesGroupHeight)
 
     //creates the scale for the x axis
-    x = d3.scaleTime().range([0,width])
+    x = d3.scaleTime().range([0,width-200])
     .domain(d3.extent(circleArray.map(d => date(d.day))))
     //create the x axis using x
     xAxis = d3.axisBottom(x)
