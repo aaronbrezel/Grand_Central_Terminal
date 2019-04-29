@@ -1,6 +1,50 @@
 date = d3.timeParse("%Y-%m-%d") //global function for turning date string into d3 datetime
 
+var threeCircles//scaled circles
+var totalCounts = [43,1813,2946] //the proportion of citibikes                                  //to FVH to cabs
 
+function makeCircles(dataArray,figure)
+{   
+    var svg = figure.append("svg")
+    
+    var scaledCircles = svg.append("g").attr("id","circleGroup") 
+    
+    var sqrtScale = d3.scaleSqrt()
+                    .range([0, 150])
+                    .domain([0, 2950])
+    
+    var finalCircles = scaledCircles.selectAll("circle").data(dataArray)
+                            .enter()
+                            .append("circle")
+                            .attr("cx",function(d,i){
+                                var value
+                                if(i==0)
+                                    {value = 100}
+                                else if(i==1)
+                                    {value = (i+1) * 150}
+                                else
+                                    {value = (i+1) * 200}
+                                return value})
+                            .attr("cy", function(d){
+                                var a = sqrtScale(d)
+                                return 300-a
+                            })
+                            .attr("r", function(d){
+                                var a = sqrtScale(d)
+                                return a
+                            })
+                            .style("fill",function(d,i){
+                                var color    
+                                if(i==0)
+                                    {color = "blue"}
+                                else if(i==1)
+                                    {color = "green"}
+                                else
+                                    {color = "gold"}
+                                return color})
+    return finalCircles
+    
+}
 
 function buildCircles(dataArray,group){
   var circles = group.selectAll("circle")
@@ -41,7 +85,6 @@ function buildSquares(dataArray,group){
 
 
 
-
 function buildBikeChart(bikes,figure){
 
   bikeSVGMargins = {top: 25, right: 25, bottom: 25, left: 900}
@@ -66,10 +109,6 @@ function buildBikeChart(bikes,figure){
   .domain(d3.extent(bikes.map(d => date(d.day))))
   //create the x axis using x
   xAxis = d3.axisBottom(x)
-
-
-
-
 
   return circles
 }

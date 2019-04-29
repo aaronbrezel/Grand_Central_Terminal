@@ -5,7 +5,7 @@ var scroller //scrollama
 var bikeArray
 var carArray
 
-d3.json("./data/day_counts_march_json.json", function(error,json) {
+d3.json("https://raw.githubusercontent.com/aaronbrezel/Grand_Central_Terminal/master/project_final/data/day_counts_march_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
@@ -66,9 +66,14 @@ function startup(){
 		// initialize the scrollama
 		scroller = scrollama();
 	
-		// kick things off
+		//data info
+        figs = main.select("#info")
+        
+        threeCircles = makeCircles(totalCounts,figs)
+        
+        // kick things off
 		init();
-
+        
 		circles = buildBikeChart(bikeArray,figure)
 		square = buildCarChart(carArray,figure)
 
