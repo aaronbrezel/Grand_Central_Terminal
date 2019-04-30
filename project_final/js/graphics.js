@@ -41,7 +41,7 @@ function buildBikeChart(bikes,figure){
     .attr("transform", `translate(${bikeSVGMargins.left},${bikeSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
-    .style("background-color", "grey")
+    .style("background-color", "white")
     .style("opacity", 0.5)
 
   var circlesMargin = {top: 5, right: 5, bottom: 5, left: 40}
@@ -99,7 +99,7 @@ function buildCarChart(cars,figure){
     .attr("transform", `translate(${cabSVGMargins.left-565},${cabSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
-    .style("background-color", "grey")
+    .style("background-color", "white")
     .style("opacity", 0.5)
 
     var squaresMargin = {top: 5, right: 5, bottom: 5, left: 40}

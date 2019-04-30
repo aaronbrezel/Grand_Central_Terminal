@@ -1,127 +1,158 @@
-// using d3 for convenience, and storing a selected elements
-var main, scrolly, figure, article, step;
+var main, scrolly, figure, article, step //variables for dom elements
 
-// initialize the scrollama
-var scroller
+var scroller //scrollama
 
-var dayCounts //variable for Json with the individual counts of each transportation method by day
-var criticalTotals//Json with total counts. Total citibikes, total FHV(and Uber, etc.), total yellowcabs and total of everything
+var bikeArray
+var carArray
+var weatherArray
 
-var monthTotal = 1920889 //total number of citibikes, yellowcabs and rideshares taken in the immediate vicinity of GCT or TSQ in March, 2018 
-var monthlyDivisor = 1000 //will make each dot represent 1920.889 New yorkers 
+var circles
+var squares
 
-var circles //circles
-
-
-var citiBikesByDay
-var citiBikesByDayTotal
-var circleArray
-
-// d3.json("../data/critical_totals_march_json.json", function(error,json) {
-// 	if (error) return console.log("Error loading data")
-// 	//console.log(json)
-// }).then(function(data){
-// 	criticalTotals = data
-// 	startup()
-// })
-
-d3.json("./data/bike_counts_by_day_march.json", function(error,json) {
+d3.json("./data/day_counts_march_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
 }).then(function(data){
-	citiBikesByDay = data
-	citiBikesByDayTotal = citiBikesByDay["March"]
-	circleArray = createCircleArray(citiBikesByDay)
+	var dailyCounts = data
+	var bikes = dailyCounts.bikes
+	var FHV = dailyCounts.FHV
+	var cabs = dailyCounts.yellowcabs
+	var weather = dailyCounts.weather
+	bikeArray = buildBikeArray(bikes)
+	carArray = buildCarArray(FHV,cabs)
+	weatherArray = buildWeatherArray(weather)
+
 	startup()
+
+	
 })
 
-
-function createCircleArray(citiBikes){
+function buildWeatherArray(weather){
 	var ArrayInProgress = []
-	total = 0
-	for (var key in citiBikes) {
-		if (key == "March"){
-			break 
-		}
-		for(i=0; i < Math.round(citiBikes[key]/4); i++){
-			ArrayInProgress.push({"day" : key})
-			
-		}
+	for (var key in weather){
+		ArrayInProgress.push({"day": key, "temp": weather[key].temp, "precip": weather[key].precip, "snow": weather[key].temp})
 	}
-	return ArrayInProgress.slice(0,4307)
+	return ArrayInProgress
 }
 
+function buildBikeArray(bikes){
+	var ArrayInProgress = []
+	for (var key in bikes){
+		if (key == "total"){		
+		}
+		else {
+			for(i=0; i < Math.round(bikes[key])/59; i++){
+				ArrayInProgress.push({"day": key})
+			}
+		}
 
+	}
+	return ArrayInProgress
+}
 
+function buildCarArray(FHV,cabs){
+	var ArrayInProgress = []
+	for (var key in FHV){
+		if (key == "total"){		
+		}
+		else {
+			for(i=0; i < Math.round(FHV[key])/3917; i++){
+				ArrayInProgress.push({"day": key, "mode": "FHV"})
+			}
+			for(i=0; i < Math.round(cabs[key])/3917; i++){
+				ArrayInProgress.push({"day": key, "mode": "yellowcab"})
+			}
+		}	
+
+	}
+	
+	return ArrayInProgress
+}
 
 function startup(){
-	$(document).ready(function () {
-
+	$(document).ready(function(){
+		// using d3 for convenience
 		main = d3.select('main')
 		scrolly = main.select('#scrolly');
 		figure = scrolly.select('figure');
 		article = scrolly.select('article');
 		step = article.selectAll('.step');
 	
+		// initialize the scrollama
 		scroller = scrollama();
+	
+		// kick things off
 		init();
-		
-	
-		circles =	buildChart(circleArray,figure)
-	
-	})
 
+		circles = buildBikeChart(bikeArray,figure)
+		squares = buildCarChart(carArray,figure)
+
+	})
 }
 
 
-	// generic window resize listener event
-	function handleResize() {
-		// 1. update height of step elements
-		var stepH = Math.floor(window.innerHeight * 0.75);
-		step.style('height', stepH + 'px');
-
-		var figureHeight = window.innerHeight / 2
-		var figureMarginTop = (window.innerHeight - figureHeight) / 2  
-
-		figure
-			.style('height', figureHeight + 'px')
-			.style('top', figureMarginTop + 'px');
 
 
-		// 3. tell scrollama to update new element dimensions
-		scroller.resize();
-	}
+// generic window resize listener event
+function handleResize() {
+	// 1. update height of step elements
+	var stepH = Math.floor(window.innerHeight * 0.75);
+	step.style('height', stepH + 'px');
+
+	var figureHeight = window.innerHeight / 2
+	var figureMarginTop = (window.innerHeight - figureHeight) / 2  
+
+	figure
+		.style('height', figureHeight + 'px')
+		.style('top', figureMarginTop + 'px');
+
+
+	// 3. tell scrollama to update new element dimensions
+	scroller.resize();
+}
 
 // scrollama event handlers
 function handleStepEnter(response) {
-	console.log(response.index)
+	//console.log(response)
 	// response = { element, direction, index }
 	if (response.index == 0 && response.direction == "down"){
-		//colorDots(circles)
+		circles.transition()
+		squares.transition()
+		flopCircles(circles)
+		flopSquares(squares)
 	}
-	else if (response.index == 0 && response.direction == "up"){
-		circles.transition();//this ends the previous transition
-		returnBlob(circles)
-	}
+
 	else if (response.index == 1 && response.direction == "down"){
-		//boxDots(circles)
-		// var graphHomes = d3.select("#graphGroup")
-		// var removed = circles.remove();
-		// graphHomes.append(function(){
-		// 	return removed.node();
-		// })
-		circles.transition();
-		graphDots(circles,citiBikesByDay)
-
+		colorSquares(squares)
+	
 	}
+
+	else if (response.index == 1 && response.direction == "up"){
+		circles.transition()
+		squares.transition()
+		boxCircles(circles)
+		boxSquares(squares)
+	}
+
 	else if (response.index == 2 && response.direction == "down"){
-		
+		circles.transition()
+		squares.transition()
+		graphCircles(circles)
+		graphSquares(squares)
+	}
+	else if (response.index == 2 && response.direction == "up"){
+		var paths = d3.selectAll(".line").remove()
 		
 	}
 
+	else if (response.index == 3 && response.direction == "down"){
+		var bikesSVG = d3.select(".bikesSVG")
+		var carsSVG = d3.select(".carsSVG")
+		graphTempBikes(bikesSVG,weatherArray)
+		graphTempCars(carsSVG,weatherArray)
+	}
 
-
-
+	
 	// add color to current step only
 	step.classed('is-active', function (d, i) {
 		return i === response.index;
@@ -131,35 +162,30 @@ function handleStepEnter(response) {
 	figure.select('p').text(response.index + 1);
 }
 
-
 function setupStickyfill() {
 	d3.selectAll('.sticky').each(function () {
 		Stickyfill.add(this);
 	});
 }
 
-
-// kick-off code to run once on load
 function init() {
-    // 1. call a resize on load to update width/height/position of elements
-	handleResize();
-
 	setupStickyfill();
 
-	// 2. setup the scrollama instance
+	// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+	handleResize();
+
+	// 2. setup the scroller passing options
+	// 		this will also initialize trigger observations
 	// 3. bind scrollama event handlers (this can be chained like below)
 	scroller.setup({
 		step: '#scrolly article .step',
 		offset: 0.5,
 		debug: true,
 	})
-	.onStepEnter(handleStepEnter)
-	
-		//.onContainerEnter(handleContainerEnter)
-		//.onContainerExit(handleContainerExit);
+		.onStepEnter(handleStepEnter)
+
 
 	// setup resize event
 	window.addEventListener('resize', handleResize);
-
 }
 

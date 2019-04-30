@@ -1,52 +1,36 @@
 #intro {
-    margin-bottom: 100px;
+    align-content: center;
+    margin-bottom: 610px;
 }
-
-.red{
-    color: red;
-}
-
-#lede {
-    
-    padding: 0;
-    max-width: 20rem;
-    font-size: 1.5rem;
-}
-
-#intro h1 {
-    font-size: 4rem;
-    font-family: Arial, Helvetica, sans-serif;
-   
-} 
-
+.flex-container {
+    display: flex;
+  }
 
 #scrolly {
     position: relative;
-    /* background-color: #f3f3f3; */
+    background-color: #f3f3f3;
     padding: 1rem;
 }
 
 article {
-    display:inline-block;
     position: relative;
     padding: 0;
     max-width: 20rem;
-    /* margin: 0 auto; */
+    margin: 0 auto;
 }
 
 figure {
-    display: inline-block;
-    vertical-align: top;
-    /* position: -webkit-sticky;
-    position: sticky; */
+    position: -webkit-sticky;
+    position: sticky;
     left: 0;
-    width: 70%;
+    height: 600px !important; /*Overridding scrollama*/
+    top: 50px !important; /*Overridding scrollama*/
+    width: 100%;
     margin: 0;
-    /* margin-left: 21rem; */
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    /* background-color: #8a8a8a; */
+    background-color: #8a8a8a;
 }
 
 figure p {
@@ -84,10 +68,4 @@ figure p {
     padding: 1rem;
     font-size: 1.5rem;
     background-color: #3b3b3b;
-}
-
-.viz p {
-    text-align: center;
-    padding: 1rem;
-    font-size: 1.5rem;
 }
