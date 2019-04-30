@@ -141,8 +141,7 @@ function handleStepEnter(response) {
 		graphSquares(squares)
 	}
 	else if (response.index == 2 && response.direction == "up"){
-		var paths = d3.selectAll(".tempLine")
-		paths.remove()
+		var paths = d3.selectAll(".line").remove()
 		
 	}
 

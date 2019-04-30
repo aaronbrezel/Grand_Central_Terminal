@@ -164,7 +164,6 @@ function graphSquares(squares){
 function graphTempBikes(group,weather){
   group.append("path")
     .datum(weather)
-    .attr("class", "tempLine")
     .attr("transform", `translate(${35},${180})`)
     .attr("fill", "none")
     .attr("stroke", "red")
@@ -177,7 +176,6 @@ function graphTempBikes(group,weather){
 function graphTempCars(group,weather){
   group.append("path")
     .datum(weather)
-    .attr("class", "tempLine")
     .attr("transform", `translate(${45},${180})`)
     .attr("fill", "none")
     .attr("stroke", "red")
