@@ -126,6 +126,7 @@ function graphDots(circles,citiBikesByDay){
     }
    
     var cy = 450 + y(2+(indexCY*4)) //450 represents the top margin of where the graph starts this is technically declared in graphis.js but I didn't want to deal with 
+    console.log(cy)
     indexCY++
     return cy
   })

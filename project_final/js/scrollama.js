@@ -5,6 +5,9 @@ var scroller //scrollama
 var bikeArray
 var carArray
 
+var circles
+var squares
+
 d3.json("./data/day_counts_march_json.json", function(error,json) {
 	if (error) return console.log("Error loading data")
 	//console.log(json)
@@ -70,7 +73,7 @@ function startup(){
 		init();
 
 		circles = buildBikeChart(bikeArray,figure)
-		square = buildCarChart(carArray,figure)
+		squares = buildCarChart(carArray,figure)
 
 	})
 }
@@ -100,7 +103,33 @@ function handleResize() {
 function handleStepEnter(response) {
 	//console.log(response)
 	// response = { element, direction, index }
+	if (response.index == 0 && response.direction == "down"){
+		circles.transition()
+		squares.transition()
+		flopCircles(circles)
+		flopSquares(squares)
+	}
 
+	else if (response.index == 1 && response.direction == "down"){
+		colorSquares(squares)
+	
+	}
+
+	else if (response.index == 1 && response.direction == "up"){
+		circles.transition()
+		squares.transition()
+		boxCircles(circles)
+		boxSquares(squares)
+	}
+
+	else if (response.index == 2 && response.direction == "down"){
+		circles.transition()
+		squares.transition()
+		graphCircles(circles)
+		graphSquares(squares)
+	}
+
+	
 	// add color to current step only
 	step.classed('is-active', function (d, i) {
 		return i === response.index;
