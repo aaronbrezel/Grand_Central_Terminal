@@ -38,9 +38,11 @@ function colorSquares(squares){
   squares.transition()
   .style("fill", function(d,i){
     if(d.mode == "FHV"){
-      return "g "
+      return "green"
     }
-
+    else if (d.mode == "yellowcab"){
+      return "yellow"
+    }
   })
 }
 
