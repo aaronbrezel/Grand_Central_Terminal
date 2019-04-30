@@ -78,6 +78,9 @@ function startup(){
 		article = scrolly.select('article');
 		step = article.selectAll('.step');
 	
+		figs = main.select("#info")
+        threeCircles = makeCircles(totalCounts,figs)
+	
 		// initialize the scrollama
 		scroller = scrollama();
 	
@@ -180,7 +183,7 @@ function init() {
 	scroller.setup({
 		step: '#scrolly article .step',
 		offset: 0.5,
-		debug: false,
+		//debug: false,
 	})
 		.onStepEnter(handleStepEnter)
 

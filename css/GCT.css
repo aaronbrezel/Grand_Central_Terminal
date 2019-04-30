@@ -1,6 +1,43 @@
+@font-face {
+    font-family: overspray;
+    src: url(Overspray.ttf);
+}
+  
+  @font-face {
+    font-family: highwaygothic;
+    src: url(HWYGOTH.ttf);
+}
+
+
+
 #intro {
-    align-content: center;
-    margin-bottom: 610px;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    background-color: white;
+    background: repeating-linear-gradient(
+    to right,
+  rgba(255,255,255,0.9),
+  rgba(255,255,255,0.9) 60px,
+  rgba(0,0,0,0.1) 60px,
+  rgba(0,0,0,0.1) 80px
+);
+    font-family: overspray;
+    color: brown;
+}
+
+
+h3 {
+    text-align: center;
+    padding-bottom: 10px;
+    background-color: orange; 
+    font-family: overspray;
+    color:brown;
+}
+
+#info-viz
+{
+    background-color:orange;
 }
 .flex-container {
     display: flex;
@@ -8,8 +45,14 @@
 
 #scrolly {
     position: relative;
-    background-color: #f3f3f3;
     padding: 1rem;
+}
+
+#info{
+    height:auto;
+    width: auto;
+    padding-bottom: 100px;
+    padding-top: 100px;
 }
 
 article {
@@ -17,6 +60,43 @@ article {
     padding: 0;
     max-width: 20rem;
     margin: 0 auto;
+}
+
+
+
+#infoSVG {
+
+    padding-top: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    width: 1300px;
+    height:350px;
+    /*background-color: darkmagenta;*/
+}
+
+#line{
+    stroke:white;
+}
+
+#labels{
+
+    font-family: overspray;
+    font-size:x-large;
+    fill:white;
+}
+
+main {
+    background-color: rgba(0,0,0,0.8);
+    height:auto;
+    width: auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-image: url("asphalt-texture.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    position: relative;
 }
 
 figure {
@@ -30,7 +110,7 @@ figure {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    background-color:white;
+
 }
 
 figure p {
@@ -44,7 +124,7 @@ figure p {
     transform: translate(-50%, -50%);
     font-size: 8rem;
     font-weight: 900;
-    color: #fff;
+    color: orange;
 }
 
 #info {
