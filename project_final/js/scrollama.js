@@ -4,6 +4,7 @@ var scroller //scrollama
 
 var bikeArray
 var carArray
+var weatherArray
 
 var circles
 var squares
@@ -16,12 +17,23 @@ d3.json("./data/day_counts_march_json.json", function(error,json) {
 	var bikes = dailyCounts.bikes
 	var FHV = dailyCounts.FHV
 	var cabs = dailyCounts.yellowcabs
+	var weather = dailyCounts.weather
 	bikeArray = buildBikeArray(bikes)
 	carArray = buildCarArray(FHV,cabs)
+	weatherArray = buildWeatherArray(weather)
+
 	startup()
 
 	
 })
+
+function buildWeatherArray(weather){
+	var ArrayInProgress = []
+	for (var key in weather){
+		ArrayInProgress.push({"day": key, "temp": weather[key].temp, "precip": weather[key].precip, "snow": weather[key].temp})
+	}
+	return ArrayInProgress
+}
 
 function buildBikeArray(bikes){
 	var ArrayInProgress = []
@@ -127,6 +139,18 @@ function handleStepEnter(response) {
 		squares.transition()
 		graphCircles(circles)
 		graphSquares(squares)
+	}
+	else if (response.index == 2 && response.direction == "up"){
+		var paths = d3.selectAll("path")
+		paths.remove()
+		
+	}
+
+	else if (response.index == 3 && response.direction == "down"){
+		var bikesSVG = d3.select(".bikesSVG")
+		var carsSVG = d3.select(".carsSVG")
+		graphTempBikes(bikesSVG,weatherArray)
+		graphTempCars(carsSVG,weatherArray)
 	}
 
 	
