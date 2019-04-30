@@ -51,10 +51,20 @@ with open("yellowcab_counts_by_day_march.csv") as yellowcab:
                 yellowcab_total = yellowcab_total + int(row[1])
     day_counts["yellowcabs"].update({"total" : yellowcab_total})
 
+with open("weather_by_day.csv") as weather:
+    weather_reader = csv.reader(weather, delimiter=",")
+    next(weather_reader,None)
+    for row in weather_reader:
+        if "weather" in day_counts:
+            day_counts["weather"].update({row[0]: {"temp": int(row[1]), "precip": float(row[2]), "snow": float(row[3]) }})
+        else:
+            day_counts["weather"] = {row[0]: {"temp": int(row[1]), "precip": float(row[2]), "snow": float(row[3]) }}
+
 day_counts_json = json.dumps(day_counts)    
 
 with open("day_counts_march_json.json", "w") as write_file:
     write_file.write(day_counts_json)
 
+print(day_counts)
 
 

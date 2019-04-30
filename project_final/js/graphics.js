@@ -37,6 +37,7 @@ function buildBikeChart(bikes,figure){
   bikeSVGMargins = {top: 5, right: 25, bottom: 5, left: 900}
 
   var svg = figure.append("svg")
+    .attr("class", "bikesSVG")
     .attr("transform", `translate(${bikeSVGMargins.left},${bikeSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
@@ -63,6 +64,10 @@ function buildBikeChart(bikes,figure){
   y = d3.scaleLinear().range([graphHeight, 0]).domain([0,1070]) //1015 is the greatest number of bikes taken in a day. This happens to be March 1st. This was calculated by looking at bike_counts_by_day_march.json
   yAxis = d3.axisLeft(y)
 
+  tempY = d3.scaleLinear().range([graphHeight, 0]).domain([30,65])
+  tempYAxis = d3.axisRight(tempY)
+
+  bikeLine = d3.line().x(d => x(date(d.day))).y(d => tempY(d.temp))
  
 
   svg.append("g")
@@ -70,10 +75,15 @@ function buildBikeChart(bikes,figure){
     .attr("transform", `translate(${graphMargin.left},${graphMargin.top + graphHeight})`)
     .call(xAxis);
 
-    svg.append("g")
+  svg.append("g")
     .attr("class", "axis axis--y")
     .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
     .call(yAxis)
+
+  svg.append("g")
+    .attr("class", "axis axis--y--temp")
+    .attr("transform", `translate(${graphMargin.left+495},${graphMargin.top})`)
+    .call(tempYAxis)
 
 
 
@@ -85,6 +95,7 @@ function buildCarChart(cars,figure){
   cabSVGMargins = {top: 5, right: 25, bottom: 5, left: 5}
 
   var svg = figure.append("svg")
+    .attr("class", "carsSVG")
     .attr("transform", `translate(${cabSVGMargins.left-565},${cabSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
@@ -109,6 +120,11 @@ function buildCarChart(cars,figure){
  
    y2 = d3.scaleLinear().range([graphHeight, 0]).domain([0,80000]) //1015 is the greatest number of bikes taken in a day. This happens to be March 1st. This was calculated by looking at bike_counts_by_day_march.json
    yAxis2 = d3.axisLeft(y2)
+
+  tempY2 = d3.scaleLinear().range([graphHeight, 0]).domain([30,65])
+  tempYAxis2 = d3.axisRight(tempY2)
+
+  carLine = d3.line().x(d => x(date(d.day))).y(d => tempY2(d.temp))
  
    svg.append("g")
      .attr("class", "axis axis--x")
@@ -119,6 +135,11 @@ function buildCarChart(cars,figure){
      .attr("class", "axis axis--y")
      .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
      .call(yAxis2)
+
+     svg.append("g")
+    .attr("class", "axis axis--y--temp")
+    .attr("transform", `translate(${graphMargin.left+495},${graphMargin.top})`)
+    .call(tempYAxis2)
 
   return squares
 }

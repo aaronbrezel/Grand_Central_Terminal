@@ -36,6 +36,7 @@ function flopSquares(squares){
 function colorSquares(squares){
   
   squares.transition()
+  .ease(d3.easeExpOut)
   .style("fill", function(d,i){
     if(d.mode == "FHV"){
       return "green"
@@ -157,5 +158,29 @@ function graphSquares(squares){
   })
   .attr("width", 8)
   .attr("height", 8)
+
+}
+
+function graphTempBikes(group,weather){
+  group.append("path")
+    .datum(weather)
+    .attr("transform", `translate(${35},${180})`)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("class", "total line")
+    .attr("stroke-width", 4)
+    .attr("d", bikeLine)
+
+}
+
+function graphTempCars(group,weather){
+  group.append("path")
+    .datum(weather)
+    .attr("transform", `translate(${45},${180})`)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("class", "total line")
+    .attr("stroke-width", 4)
+    .attr("d", carLine)
 
 }
