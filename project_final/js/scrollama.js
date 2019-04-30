@@ -66,9 +66,8 @@ function startup(){
 		// initialize the scrollama
 		scroller = scrollama();
 	
-		//data info
+		//overview of our data
         figs = main.select("#info")
-        
         threeCircles = makeCircles(totalCounts,figs)
         
         // kick things off
