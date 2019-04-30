@@ -5,14 +5,34 @@ var totalCounts = [43,1813,2946] //the proportion of citibikes                  
 
 function makeCircles(dataArray,figure)
 {   
+    //create the canvas
     var svg = figure.append("svg")
+                    .attr("id","infoSVG")
     
+    //create a group for all the circles aand add to the canvas
     var scaledCircles = svg.append("g").attr("id","circleGroup") 
     
+    //when encoding values to the area of a circle it is best //to use the Sqrt scale  
     var sqrtScale = d3.scaleSqrt()
                     .range([0, 150])
                     .domain([0, 2950])
     
+    //mapping each data point to a color
+    var quantileScale = d3.scaleQuantile()
+                          .domain(totalCounts)
+                          .range(['blue', 'green', 'gold']);
+    
+    //tooltip
+    var tooltip = d3.select("#infoSVG").append("text")
+                    .attr("x", 0)
+                    .attr("y", 0)
+                    .style("position", "absolute")
+                    .style("background-color", "white")
+                    .style("z-index", "10")
+                    .style("visibility", "hidden")
+	                .text("a simple tooltip")
+    
+    //creating the circles based on the data and tooltip
     var finalCircles = scaledCircles.selectAll("circle").data(dataArray)
                             .enter()
                             .append("circle")
@@ -33,15 +53,20 @@ function makeCircles(dataArray,figure)
                                 var a = sqrtScale(d)
                                 return a
                             })
-                            .style("fill",function(d,i){
-                                var color    
-                                if(i==0)
-                                    {color = "blue"}
-                                else if(i==1)
-                                    {color = "green"}
-                                else
-                                    {color = "gold"}
-                                return color})
+                            .style("fill",function(d){
+                                var b = quantileScale(d)
+                                return b})
+                            .on("mouseover", function(d) {
+                                    console.log("mouseover") 
+                                    tooltip.text("The count is: " + d)
+                                    tooltip.attr("x",event.pageX+5)
+                                    tooltip.attr("y",event.pageY +5)
+                                    tooltip.style("visibility","visible")
+                                    })
+                            .on("mouseout", function() {
+                                    console.log("mouseout")
+                                    tooltip.style("visibility","hidden")
+                                    })
     return finalCircles
     
 }
