@@ -21,23 +21,25 @@
   rgba(0,0,0,0.1) 80px
 );
     font-family: overspray;
-    color: black;
+    color: brown;
+    font-size: x-large;
 }
 
 #outro{
-    text-align: center;
-    padding-bottom: 10px;
-    background: repeating-linear-gradient(
-  to right,
-  rgb(255,255,255),
-  rgb(255,255,255) 40px,
-  rgba(0,0,0,0.1) 40px,
-  rgba(0,0,0,0.1) 60px
-);
+    /*text-align: center;
+    margin-top: 50px;
+    background-color: orange;
     font-family: overspray;
-    color: red;
+    color: brown;*/
 }
 
+h3{
+    text-align: center;
+    background-color: orange;
+    font-family: overspray;
+    color: brown;
+    
+}
 .flex-container {
     display: flex;
   }
