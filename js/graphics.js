@@ -214,8 +214,7 @@ function buildBikeChart(bikes,figure){
     .attr("transform", `translate(${bikeSVGMargins.left},${bikeSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
-    .style("background-color", "white")
-    .style("opacity", 0.5)
+    .style("opacity", 1)
 
   var circlesMargin = {top: 5, right: 5, bottom: 5, left: 40}
   var circleHomes = svg.append("g").attr("id","circleGroup")
@@ -246,16 +245,19 @@ function buildBikeChart(bikes,figure){
   svg.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", `translate(${graphMargin.left},${graphMargin.top + graphHeight})`)
+    .style("color","white")
     .call(xAxis);
 
   svg.append("g")
     .attr("class", "axis axis--y")
     .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
+    .style("color","white")
     .call(yAxis)
 
   svg.append("g")
     .attr("class", "axis axis--y--temp")
     .attr("transform", `translate(${graphMargin.left+495},${graphMargin.top})`)
+    .style("color","white")
     .call(tempYAxis)
 
 
@@ -272,8 +274,7 @@ function buildCarChart(cars,figure){
     .attr("transform", `translate(${cabSVGMargins.left-565},${cabSVGMargins.top})`)
     .attr("width", `${565}`)
     .attr("height", `${600-bikeSVGMargins.top-bikeSVGMargins.bottom}`)
-    .style("background-color", "white")
-    .style("opacity", 0.5)
+    .style("opacity", 1)
 
     var squaresMargin = {top: 5, right: 5, bottom: 5, left: 40}
     var squareHomes = svg.append("g").attr("id","squareGroup")
@@ -302,16 +303,19 @@ function buildCarChart(cars,figure){
    svg.append("g")
      .attr("class", "axis axis--x")
      .attr("transform", `translate(${graphMargin.left},${graphMargin.top + graphHeight})`)
+     .style("color","white")
      .call(xAxis2);
  
      svg.append("g")
      .attr("class", "axis axis--y")
      .attr("transform", `translate(${graphMargin.left},${graphMargin.top})`)
+     .style("color","white")
      .call(yAxis2)
 
      svg.append("g")
     .attr("class", "axis axis--y--temp")
     .attr("transform", `translate(${graphMargin.left+495},${graphMargin.top})`)
+    .style("color","white")
     .call(tempYAxis2)
 
   return squares

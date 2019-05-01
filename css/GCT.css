@@ -37,7 +37,8 @@ h3 {
 
 #info-viz
 {
-    background-color:orange;
+    color:white;
+    width: 50%;
 }
 .flex-container {
     display: flex;
@@ -91,8 +92,7 @@ main {
     width: auto;
     padding-bottom: 10px;
     padding-top: 10px;
-    background-image: url("asphalt-texture.jpg");
-    background-color: #cccccc;
+    background-color:rgba(0,0,0,0.8);
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
