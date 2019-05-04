@@ -29,7 +29,8 @@
 
 h3 {
     text-align: center;
-    padding-bottom: 10px;
+    padding-top: 11px;
+    padding-bottom: 4px;
     background-color: orange; 
     font-family: overspray;
     color:brown;
@@ -138,8 +139,5 @@ figure p {
 }
 
 td {
-    vertical-align: center;
-    padding: 15px;
-    width: 100%;
     text-align: center;
 }
