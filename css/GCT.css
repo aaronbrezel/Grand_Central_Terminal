@@ -136,3 +136,15 @@ figure p {
     font-size: 1.5rem;
     background-color: #3b3b3b;
 }
+
+td {
+    vertical-align: center;
+    padding: 15px;
+}
+
+td p{
+    width: 100%;
+    text-align: center;
+}
+
+    
