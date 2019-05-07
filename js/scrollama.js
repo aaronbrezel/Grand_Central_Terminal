@@ -78,7 +78,7 @@ function startup(){
 		article = scrolly.select('article');
 		step = article.selectAll('.step');
 	
-		figs = main.select("#info")
+		figs = main.select("#full-size")
         threeCircles = makeCircles(totalCounts,figs)
 	
 		// initialize the scrollama
@@ -162,7 +162,7 @@ function handleStepEnter(response) {
 	})
 
 	// update graphic based on step
-	figure.select('p').text(response.index + 1);
+	//figure.select('p').text(response.index + 1);
 }
 
 function setupStickyfill() {

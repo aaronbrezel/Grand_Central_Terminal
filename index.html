@@ -33,9 +33,12 @@
 </head>
 <body id="body">
     <main>
-		<section class= "flex-container" id='intro'>
+		<section id='intro'>
 			<h1>Citi Bikes, Yellowcabs and Rideshares: How NYC moves when it's cold (and hot) out</h1>
             
+            <br>
+
+            <p id='middle-line'> </p>
             <img 
                 src="./svgs/bicycle.svg" 
                 alt="bicycle"
@@ -54,13 +57,18 @@
                 height="120px"
                 width="200px"
             />
-        
+
+            <center> Scroll to start </center>
+        </section>
+
+        <section id='full-size'>
+
         </section>
 
 		<section id='scrolly'>
 
             <figure>
-				<p></p>
+				<p> </p>
 			</figure>
 
             <article>
@@ -83,29 +91,29 @@
 			
 			
 		</section>
-		    <table style="width:100%">
+		    <table style="width:100%" id='the-table'>
   			<tr>
-    				<td><img src="./staticViz/finalVizCiti.png" alt="Citibike Wed/Thurs"></td>
+    				<td><img src="./staticViz/finalVizCiti.png" alt="Citibike Wed/Thurs" style="margin-left: 30px"></td>
 				<td>
-					<p id="info-viz" style="color: whitesmoke">These three graphs attempt to highlight the effect 
+					<p id="info-viz" style="color: black">These three graphs attempt to highlight the effect 
 					of snow on normal transport conditions. In all 3, days that are neither snowy nor Wednesday/Thursday 
 					are in dark blue, Wednesdays and Thursdays are in orange, and Snowy Wednesdays/Thursdays are in light blue.
 					</p>
 				</td>
   			</tr>
   			<tr>
-    				<td><img src="./staticViz/finalVizTaxi.png" alt="Taxi Wed/Thurs"></td>
 				<td>
-					<p id="info-viz" style="color: whitesmoke">The aim is to show that though Wednesdays and Thursdays 
+					<p id="info-viz" style="color: black">The aim is to show that though Wednesdays and Thursdays 
 					are normally some of the highest transportation days, snow significantly affects this even when 
 					compared in the same month.
 					</p>
-				</td>
+                </td>
+                <td><img src="./staticViz/finalVizTaxi.png" alt="Taxi Wed/Thurs" style="padding-left: 20px"></td>
   			</tr>
   			<tr>
-    				<td><img src="./staticViz/finalVizFHV.png" alt="FHV Wed/Thurs"></td>
+    				<td><img src="./staticViz/finalVizFHV.png" alt="FHV Wed/Thurs" style="padding-left: 20px"></td>
 				<td>
-					<p id="info-viz" style="color: whitesmoke">The effect is dulled, but still present, in FHVs.
+					<p id="info-viz" style="color: black">The effect is dulled, but still present, in FHVs.
 					We theorize this is due to the ability to order a FVH from inside, which is not common in cabs
 					or citibikes.
 					</p>

@@ -13,17 +13,24 @@
 #intro {
     text-align: center;
     padding-top: 10px;
-    margin-bottom: 30px;
-    background-color: white;
-    background: repeating-linear-gradient(
-    to right,
-  rgba(255,255,255,0.9),
-  rgba(255,255,255,0.9) 60px,
-  rgba(0,0,0,0.1) 60px,
-  rgba(0,0,0,0.1) 80px
-);
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width:100%;
+    display:block;
+    
     font-family: overspray;
-    color: brown;
+    color: white;
+    font-size: x-large;
+
+    border-width:30px;
+    border-color:orange;
+    border-style: double none;
+}
+
+#middle-line{
+    border-style:dashed none none none;
+    border-width:20px;
+    border-color:white;
 }
 
 
@@ -56,9 +63,10 @@ article {
 
 #infoSVG {
 
-    padding-top: 20px;
+    padding-top: 200px;
     margin-left: 20px;
     margin-right: 10px;
+    margin-bottom: 100px;
     width: 1300px;
     height:350px;
     /*background-color: darkmagenta;*/
@@ -82,9 +90,6 @@ main {
     padding-bottom: 10px;
     padding-top: 10px;
     background-color:rgba(0,0,0,0.8);
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
     position: relative;
 }
 
@@ -140,4 +145,16 @@ figure p {
 
 td {
     text-align: center;
+}
+
+#info-viz{
+    background-color: goldenrod;
+    font-family: highwaygothic;
+    font-size: 18pt;
+    margin-left: 10px;
+    margin-right:10px;
+}
+
+#the-table{
+    margin-top:100px;
 }
