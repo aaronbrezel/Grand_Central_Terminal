@@ -6,6 +6,6 @@ We decided to visualize how temperature and weather impacts public transportatio
 
 We collated data from citibikes, cabs, and rideshares in NYC for March 2018. Then, we pared those down to just the area around Grand Central Terminal and Times Square. This gave us a manageable dataset with which to work.
 
-We visualized the useage as a function of temperature in our main visualization, and then compiled static graphs to show snow's effect on all three vehicle types.
+We visualized transportation useage as a function of temperature in our main [d3.js](https://d3js.org/) visualization, and then compiled static graphs to show snow's effect on all three vehicle types.
 
 Credit: [Aaron Brezel](https://github.com/aaronbrezel), [Aditi Hudli](https://github.com/aditi-hudli), [Tristan Orlofski](https://github.com/torlofski) and [Mythili Shankara](https://github.com/MythiliSankara)
