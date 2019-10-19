@@ -13,6 +13,6 @@ We chose to visualize how temperature and weather impacted public transportation
 - Static and animated visuals developed using [D3.js](https://d3js.org/).
 - Scrolling architecture comes from [Scrollama](https://github.com/russellgoldenberg/scrollama).
 
-_Ideally, we would have liked to include subway ridership data, but ultimately the data provided by the MTA proved to be too inconsistent for our short turnaround time.__
+_Ideally, we would have liked to include subway ridership data, but ultimately the data provided by the MTA proved to be too inconsistent for our short turnaround time._
 
 Credit: [Aaron Brezel](https://github.com/aaronbrezel), [Aditi Hudli](https://github.com/aditi-hudli), [Tristan Orlofski](https://github.com/torlofski) and [Mythili Shankara](https://github.com/MythiliSankara)
